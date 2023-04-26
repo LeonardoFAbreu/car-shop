@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { isValidObjectId } from 'mongoose';
 import ICar from '../Interfaces/ICar';
 import CarsService from '../Services/CarsService';
 
@@ -26,6 +27,26 @@ class CarsController {
 
     const cars = await this.service.create(carsInfo);
     return this.res.status(201).json(cars);
+  }
+
+  public async getAll() {
+    const allCars = await this.service.getAll();
+    return this.res.status(200).json(allCars);
+  }
+
+  public async getById() {
+    const { id } = this.req.params;
+
+    if (!isValidObjectId(id)) {
+      return this.res.status(422).json({ message: 'Invalid mongo id' });
+    }
+
+    const carById = await this.service.getById(id);
+
+    if (!carById) {
+      return this.res.status(404).json({ message: 'Car not found' });
+    }
+    return this.res.status(200).json(carById);
   }
 }
 
