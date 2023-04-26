@@ -48,6 +48,23 @@ class CarsController {
     }
     return this.res.status(200).json(carById);
   }
+
+  public async carUpdate() {
+    const { id } = this.req.params;
+
+    if (id.length !== 24) {
+      return this.res.status(422).json({ message: 'Invalid mongo id' });
+    }
+    const car = { ...this.req.body };
+    try {
+      const updatedCar = await this.service.carUpdate(id, car);
+      return this.res.status(200).json(updatedCar);
+    } catch (error) {
+      if (error instanceof Error) {
+        return this.res.status(404).json({ message: error.message });
+      }
+    }
+  }
 }
 
 export default CarsController;
