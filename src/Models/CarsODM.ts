@@ -1,6 +1,6 @@
 import { Schema, UpdateQuery } from 'mongoose';
 import ICar from '../Interfaces/ICar';
-import ODM from './ODM';
+import ODM from './AbstractODM';
 
 class CarsODM extends ODM<ICar> {
   constructor() {
