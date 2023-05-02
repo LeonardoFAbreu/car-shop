@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
 import { isValidObjectId } from 'mongoose';
+
 import ICar from '../Interfaces/ICar';
 import CarsService from '../Services/CarsService';
 
-class CarsController {
+export default class CarsController {
   private req: Request;
   private res: Response;
   private service: CarsService;
@@ -66,5 +67,3 @@ class CarsController {
     }
   }
 }
-
-export default CarsController;

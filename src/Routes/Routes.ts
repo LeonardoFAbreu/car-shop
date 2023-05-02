@@ -9,5 +9,7 @@ routes.get('/cars', (req, res) => new CarsController(req, res).getAll());
 routes.get('/cars/:id', (req, res) => new CarsController(req, res).getById());
 routes.put('/cars/:id', (req, res) => new CarsController(req, res).carUpdate());
 routes.post('/motorcycles', (req, res) => new MotorcyclesController(req, res).create());
+routes.get('/motorcycles', (req, res) => new MotorcyclesController(req, res).getAll());
+routes.get('/motorcycles/:id', (req, res) => new MotorcyclesController(req, res).getById());
 
 export default routes;
